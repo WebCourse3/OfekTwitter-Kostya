@@ -1,6 +1,32 @@
 {
-  "name": "OfekTwitter",
+  "name": "ofek-twitter",
   "version": "0.0.1",
   "dependencies": {
-  }
+    "bootstrap": "^4.0.0-beta.2",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.6"
+  },
+  "description": "twitter by the book",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebCourse3/OfekTwitter-Kostya.git"
+  },
+  "keywords": [
+    "shits",
+    "giggle",
+    "such",
+    "twitter",
+    "much",
+    "keywords"
+  ],
+  "author": "dankest man alive",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WebCourse3/OfekTwitter-Kostya/issues"
+  },
+  "homepage": "https://github.com/WebCourse3/OfekTwitter-Kostya#readme"
 }
