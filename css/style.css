@@ -4,25 +4,86 @@
 .collapse {
 	display: inline-block;
 }
-
-.navbar-nav {
+.navbar-nav{
 	flex-direction: row;
 	float: right;
 }
 
 .navbar-nav .nav-link {
-	padding-right: 10px;
-	padding-left: 10px;
+	 padding-right: 10px;
+	 padding-left: 10px;
 }
 
-.ot-body {
+.ot-body{
 	margin-top: 2%;
 }
 
-.tweet-row {
+.tweet-row{
 	margin-top: 15px;
 }
 
-.tweet-username {
+.tweet-input{
+	width: 70%;
+}
+
+.tweet-username{
 	font-weight: bold;
+}
+
+.tweet-data{
+	padding-left: 0px;
+}
+
+.users-row{
+	margin-top: 3%;
+}
+
+.user-cell{
+	text-align: center;
+	margin-bottom: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.user-cell *{
+	margin-bottom: 5px;
+}
+
+.user-cell-name p{
+	font-size: 0.9rem;
+}
+
+.user-avatar-img{
+	margin-top: 5px;
+}
+
+.user-avatar-img img{
+	vertical-align: baseline;
+}
+
+.followees-list{
+	text-align: center;
+}
+
+.sign-form{
+	margin-top: 5%;
+}
+
+.sign-form .form-row:last-child{
+	margin-bottom: 4%;
+}
+
+.sign-heading{
+	background-color: #343a40;
+	color: #e6e6e6;
+	margin-bottom: 5%;
+}
+
+.sign-heading h5{
+	margin-left: 5%;
+}
+
+.label-col label{
+	display: inline-block;
+	vertical-align: sub;
 }
