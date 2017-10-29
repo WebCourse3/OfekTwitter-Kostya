@@ -3,33 +3,34 @@
 // FUNCTIONS
 window.onload = function() {
 	loadAllUsers();
+
+	document.getElementById('filter-textarea').addEventListener('keyup', filter);
 }
 
-var avatar = "images/useravatar.png";
-var usersListId = "users-list";
-var followeeListId = "followees-list";
-var buttonFollow = "follow";
-var buttonUnfollow = "unfollow";
+var avatar = 'images/userAvatar.png';
+var usersListId = 'users-list';
+var followerListId = 'followers-list';
+var buttonFollow = 'follow';
+var buttonUnfollow = 'unfollow';
 
 var users = [
-	{name: 'Marty McFly', following:false, id:1},
-	{name: 'James Bond', following:false, id:2},
-	{name: 'Janis Joplin', following:true, id:3},
-	{name: 'Mark Twain', following:false, id:4},
-	{name: 'Albert Einstein', following:true, id:5},
-	{name: 'Frodo', following:false, id:6},
-	{name: 'Bill Gates', following:false, id:7}
+	{name: 'Marty McFly', following: false, id: 1},
+	{name: 'James Bond', following: false, id: 2},
+	{name: 'Janis Joplin', following: true, id: 3},
+	{name: 'Mark Twain', following: false, id: 4},
+	{name: 'Albert Einstein', following: true, id: 5},
+	{name: 'Frodo', following: false, id: 6},
+	{name: 'Bill Gates', following: false, id: 7}
 ];
 
 function loadAllUsers() {
-	for(var i=0; i < users.length; i++){
+	for (var i = 0; i < users.length; i++) {
 		var user = users[i];
 
-		if(user.following){
-			addUser(user.name, user.following, user.id, avatar, followeeListId);
+		if (user.following) {
+			addUser(user.name, user.following, user.id, avatar, followerListId);
 		}
-		else
-		{
+		else {
 			addUser(user.name, user.following, user.id, avatar, usersListId);
 		}
 	}
@@ -42,18 +43,15 @@ function addUser(name, followingState, id, avatar, listId) {
 }
 
 function createNewUser(name, followState, id, avatar, listId) {
-	var newUser = document.createElement("div");
+	var newUser = document.createElement('div');
 
-
-	if(listId == usersListId)
-	{
-		newUser.id = "user" + id;
-		newUser.className="user-cell col-lg-2 border border-secondary rounded";
+	if (listId == usersListId) {
+		newUser.id = 'user' + id;
+		newUser.className = 'user-cell col-lg-2 border border-secondary rounded';
 	}
-	else
-	{
-		newUser.id = "followee" + id;
-		newUser.className="user-cell border border-secondary rounded col-lg-6 offset-lg-6";
+	else {
+		newUser.id = 'follower' + id;
+		newUser.className = 'user-cell border border-secondary rounded col-lg-6 offset-lg-6';
 	}
 
 	newUser.appendChild(CreateNewAvatarDiv(avatar));
@@ -63,27 +61,27 @@ function createNewUser(name, followState, id, avatar, listId) {
 }
 
 function CreateNewAvatarDiv(avatar) {
-	var avatarDiv =  document.createElement("div");
-	avatarDiv.className = "user-avatar-img";
+	var avatarDiv = document.createElement('div');
+	avatarDiv.className = 'user-avatar-img';
 	avatarDiv.appendChild(createNewImg(avatar));
 	return avatarDiv;
 }
 
-function createNewImg(picture){
+function createNewImg(picture) {
 	var newImg = document.createElement('img');
-	newImg.src= picture;
+	newImg.src = picture;
 	return newImg;
 }
 
-function createNewFollowButton(followState, id){
+function createNewFollowButton(followState, id) {
 	var newButton = document.createElement('button');
-	newButton.id = "button" + id;
-	newButton.className = "btn btn-primary btn-sm";
-	newButton.type = "submit";
+	newButton.id = 'button' + id;
+	newButton.className = 'btn btn-primary btn-sm';
+	newButton.type = 'submit';
 
 	followState ? newButton.textContent = buttonUnfollow : newButton.textContent = buttonFollow;
 
-	newButton.addEventListener("click", function (event) {
+	newButton.addEventListener('click', function (event) {
 		var buttonClicked = event.target;
 		changeFollowStatus(id, buttonClicked);
 	});
@@ -92,40 +90,50 @@ function createNewFollowButton(followState, id){
 }
 
 function CreateNewUsernameDiv(name) {
-	var nameDiv =  document.createElement("div");
-	nameDiv.className = "user-cell-name";
+	var nameDiv = document.createElement('div');
+	nameDiv.className = 'user-cell-name';
 	nameDiv.appendChild(createNewParagraph(name));
 	return nameDiv;
 }
 
-function createNewParagraph(string){
+function createNewParagraph(string) {
 	var newParagraph = document.createElement('p');
 	newParagraph.appendChild(document.createTextNode(string));
 	return newParagraph;
 }
 
-function changeFollowStatus(id, buttonCliked) {
-	var followeesList = document.getElementById(followeeListId);
+function changeFollowStatus(id, buttonClicked) {
+	var followersList = document.getElementById(followerListId);
 	var usersList = document.getElementById(usersListId);
 	var user = getUserById(id);
 
 	if (user.following) {
-		followeesList.removeChild(buttonCliked.parentElement);
+		followersList.removeChild(buttonClicked.parentElement);
 		user.following = !user.following;
 		addUser(user.name, user.following, user.id, avatar, usersListId);
 	}
 	else {
-		usersList.removeChild(buttonCliked.parentElement);
+		usersList.removeChild(buttonClicked.parentElement);
 		user.following = !user.following;
-		addUser(user.name, user.following, user.id, avatar, followeeListId);
+		addUser(user.name, user.following, user.id, avatar, followerListId);
+	}
+}
+
+function filter() {
+	var filterString = document.getElementById('filter-textarea').value;
+	var notFollowingUsers = users.filter(x = > !x.following);
+
+	for (var i = 0; i < notFollowingUsers.length; i++) {
+		var user = notFollowingUsers[i];
+		user.name.substr(0, filterString.length).toLowerCase() === filterString.toLowerCase() ?
+			document.getElementById('user' + user.id).style.display = '' :
+			document.getElementById('user' + user.id).style.display = 'none';
 	}
 }
 
 function getUserById(id) {
-	for(var i = 0; i < users.length; i++)
-	{
-		if(users[i].id == id)
-		{
+	for (var i = 0; i < users.length; i++) {
+		if (users[i].id == id) {
 			return users[i];
 		}
 	}

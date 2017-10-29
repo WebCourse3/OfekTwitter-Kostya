@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>OfekTwitter | Users</title>
-	<link rel="stylesheet" href="node_modules/css/bootstrap.min.css">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="scripts/users.js"></script>
 </head>
@@ -36,7 +36,8 @@
 		<div class="row justify-content-lg-start">
 			<div class="col-lg-4 offset-lg-1">
 				<div class="input-group">
-					<input type="textarea" class="form-control" placeholder="Filter by..." aria-label="Filter by...">
+					<input type="textarea" id="filter-textarea" class="form-control" placeholder="Filter by..."
+					       aria-label="Filter by...">
 					<span class="input-group-btn">
 	                    <button class="btn btn-secondary" type="button">Ok</button>
 	                </span>
@@ -53,7 +54,7 @@
 
 			<div class="col-lg-3 followers-list">
 				<h3>Followers</h3>
-				<div class="row justify-content-md-center" id="followees-list">
+				<div class="row justify-content-md-center" id="followers-list">
 
 				</div>
 			</div>
@@ -61,5 +62,6 @@
 	</div>
 	<br class="clearFix"/>
 </div>
+
 </body>
 </html>

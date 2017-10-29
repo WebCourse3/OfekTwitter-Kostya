@@ -6,8 +6,8 @@ window.onload = function() {
 	document.getElementById("publish-tweet").addEventListener("click", publishTweet);
 }
 
-var avatar = "images/useravatar.png";
-var user = "David";
+var avatar = 'images/userAvatar.png';
+var user = 'GloriousCopyPasta1337';
 
 var tweets = [
 	{username: 'Bobo', text: 'hello followers!'},
